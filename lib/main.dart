@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 70,
+        toolbarHeight: 90,
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         backgroundColor: Colors.white,
         // Here we take the value from the MyHomePage object that was created by
