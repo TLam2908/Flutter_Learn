@@ -6,6 +6,29 @@ void main() {
   runApp(const MyApp());
 }
 
+List<Object> Article = [
+  {
+    'title' : 'ReactJS',
+    'content' : 'React is an open-source, front end, JavaScript library for building user interfaces or UI components.',
+    'image' : 'assets/react.png',
+  },
+  {
+    'title': 'NestJS',
+    'content': 'NestJS is a framework for building efficient, scalable Node.js server-side applications.',
+    'image': 'assets/nest.png',
+  },
+  {
+    'title' : 'VueJS',
+    'content' : 'Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications.',
+    'image' : 'assets/vue.png',
+  },
+  {
+    'title' : 'NextJS',
+    'content' : 'Next.js is an open-source React front-end development web framework that enables functionality such as server-side rendering and generating static.',
+    'image' : 'assets/nextjs.png',
+  }
+];
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -57,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Colors.white,
             centerTitle: true,
             title: Text(widget.title, style: GoogleFonts.lato(
-              fontSize: 22,
+              fontSize: 20,
               fontWeight: FontWeight.w900,
             )),
             leading: (
@@ -127,15 +150,64 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                   ),
                   ReadMoreText("Flutter is an open-source UI software development kit created by Google. It can be used to develop cross platform applications from a single codebase for the web, Fuchsia, Android, iOS, Linux, macOS, and Windows. First described in 2015, Flutter was released in May 2017. Flutter is used internally by Google in apps such as Google Pay and Google Earth as well as other software developers including ByteDance and Alibaba.",
-                    trimLines: 4,
                     trimMode: TrimMode.Line,
+                    trimLines: 4,
                     trimCollapsedText: ' Show more',
                     trimExpandedText: ' Show less',
                     moreStyle: TextStyle(fontSize: 12, color: Colors.blue),
                     lessStyle: TextStyle(fontSize: 12, color: Colors.blue),
                   ),
 
-                  Padding(padding: const EdgeInsets.only(top: 270),
+                  Padding(padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+                    child: Text ("Related Articles", style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                    )),
+                  ),
+
+                 // Dung ListView thi can SizedBox de set chieu cao
+                 SizedBox(
+                   height: 250,
+                   child: ListView.separated(
+                     scrollDirection: Axis.horizontal,
+                     separatorBuilder: (BuildContext context, int index) {
+                       return SizedBox(width: 30);
+                     }, // Space between items
+                     itemCount: Article.length,
+                     itemBuilder: (BuildContext context, int index) {
+                       final article = Article[index] as Map<String, dynamic>;
+                       return Column (
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                           ClipRRect(
+                               borderRadius: BorderRadius.circular(10),
+                               child: Image(
+                                 image: AssetImage(article['image']),
+                                 height: 150,
+                                 width: 150,
+                                 fit: BoxFit.contain,
+                               )
+                           ),
+                           Padding (padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                             child: Text(article['title'], style: TextStyle(
+                               fontSize: 12,
+                               fontWeight: FontWeight.bold,
+                             )),
+                           ),
+                           SizedBox(
+                             width: 170,
+                             child: Text (article['content'], style: TextStyle(
+                               fontSize: 10,
+                               fontWeight: FontWeight.normal,
+                             )),
+                           )
+                         ],
+                       );
+                     },
+                   ),
+                 ),
+
+                  Padding(padding: const EdgeInsets.fromLTRB(0, 150, 0, 50),
                       child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton (
@@ -163,6 +235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           )
                       )
                   ),
+
                 ],
               ),
             )
