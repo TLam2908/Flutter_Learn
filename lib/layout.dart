@@ -19,12 +19,22 @@ List<Object> Article = [
   },
   {
     'title' : 'VueJS',
-    'content' : 'Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications.',
+    'content' : 'Vue.js is an open-source model–view–viewmodel front end JavaScript framework.',
     'image' : 'assets/vue.png',
   },
   {
     'title' : 'NextJS',
-    'content' : 'Next.js is an open-source React front-end development web framework that enables functionality such as server-side rendering and generating static.',
+    'content' : 'Next.js is an open-source React front-end development web framework.',
+    'image' : 'assets/nextjs.png',
+  },
+  {
+    'title' : 'Next1',
+    'content' : 'Next.js is an open-source React front-end development web framework.',
+    'image' : 'assets/nextjs.png',
+  },
+  {
+    'title' : 'Next2',
+    'content' : 'Next.js is an open-source React front-end development web framework.',
     'image' : 'assets/nextjs.png',
   }
 ];
@@ -76,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-            toolbarHeight: 90,
+            toolbarHeight: 80,
             backgroundColor: Colors.white,
             centerTitle: true,
             title: Text(widget.title, style: GoogleFonts.lato(
@@ -141,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontSize: 12,
                                       )),
                                     ),
-                                    Icon (Icons.arrow_forward_rounded, size: 10,)
+                                    Icon (Icons.arrow_forward_rounded, size: 10, )
                                   ],
                                 )
                             )
@@ -158,56 +168,143 @@ class _MyHomePageState extends State<MyHomePage> {
                     lessStyle: TextStyle(fontSize: 12, color: Colors.blue),
                   ),
 
+                  // Padding(padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+                  //   child: Text ("Related Articles", style: TextStyle(
+                  //     fontSize: 16,
+                  //     fontWeight: FontWeight.w900,
+                  //   )),
+                  // ),
+
+                 // // Dung ListView thi can SizedBox de set chieu cao
+                 // SizedBox(
+                 //   height: 250,
+                 //   child: ListView.separated(
+                 //     scrollDirection: Axis.horizontal,
+                 //     separatorBuilder: (BuildContext context, int index) {
+                 //       return SizedBox(width: 30);
+                 //     }, // Space between items
+                 //     itemCount: Article.length,
+                 //     itemBuilder: (BuildContext context, int index) {
+                 //       final article = Article[index] as Map<String, dynamic>;
+                 //       return Column (
+                 //         crossAxisAlignment: CrossAxisAlignment.start,
+                 //         children: [
+                 //           ClipRRect(
+                 //               borderRadius: BorderRadius.circular(10),
+                 //               child: Image(
+                 //                 image: AssetImage(article['image']),
+                 //                 height: 150,
+                 //                 width: 150,
+                 //                 fit: BoxFit.contain,
+                 //               )
+                 //           ),
+                 //           Padding (padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                 //             child: Text(article['title'], style: TextStyle(
+                 //               fontSize: 12,
+                 //               fontWeight: FontWeight.bold,
+                 //             )),
+                 //           ),
+                 //           SizedBox(
+                 //             width: 170,
+                 //             child: Text (article['content'], style: TextStyle(
+                 //               fontSize: 10,
+                 //               fontWeight: FontWeight.normal,
+                 //             )),
+                 //           )
+                 //         ],
+                 //       );
+                 //     },
+                 //   ),
+                 // ),
+
                   Padding(padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
-                    child: Text ("Related Articles", style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                    )),
+                    child: Text("Related Articles", style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900
+                    ),)
                   ),
 
-                 // Dung ListView thi can SizedBox de set chieu cao
-                 SizedBox(
-                   height: 250,
-                   child: ListView.separated(
-                     scrollDirection: Axis.horizontal,
-                     separatorBuilder: (BuildContext context, int index) {
-                       return SizedBox(width: 30);
-                     }, // Space between items
-                     itemCount: Article.length,
-                     itemBuilder: (BuildContext context, int index) {
-                       final article = Article[index] as Map<String, dynamic>;
-                       return Column (
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         children: [
-                           ClipRRect(
-                               borderRadius: BorderRadius.circular(10),
-                               child: Image(
-                                 image: AssetImage(article['image']),
-                                 height: 150,
-                                 width: 150,
-                                 fit: BoxFit.contain,
-                               )
-                           ),
-                           Padding (padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                             child: Text(article['title'], style: TextStyle(
-                               fontSize: 12,
-                               fontWeight: FontWeight.bold,
-                             )),
-                           ),
-                           SizedBox(
-                             width: 170,
-                             child: Text (article['content'], style: TextStyle(
-                               fontSize: 10,
-                               fontWeight: FontWeight.normal,
-                             )),
-                           )
-                         ],
-                       );
-                     },
-                   ),
-                 ),
+                  // Muon ListView khong co scroll thi dung column + shinkWrap + physics
+                  Column(
+                    children: [
+                      ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            final article = Article[index] as Map<String, dynamic>;
+                            return Row(
+                              children: [
+                                Expanded(
+                                    flex: 1,
+                                    child: Padding(padding: const EdgeInsets.only(right: 10),
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          child: Image(
+                                              image: AssetImage(article['image']),
+                                              height: 100,
+                                              width: 100,
+                                              fit: BoxFit.contain
+                                          )
+                                      ),
+                                    )
+                                ),
 
-                  Padding(padding: const EdgeInsets.fromLTRB(0, 150, 0, 50),
+                                Expanded(
+                                    flex: 3,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(article['title'], style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w900
+                                        ),
+                                        ),
+
+                                        Padding(padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+                                          child: Text(
+                                            article['content'],
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(fontSize: 10, fontWeight: FontWeight.normal),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                            onTap: () {
+                                              final tapBar = SnackBar(
+                                                content: const Text('Read more'),
+                                                action: SnackBarAction(label: "Undo", onPressed: () {}),
+                                              );
+                                              ScaffoldMessenger.of(context).showSnackBar(tapBar);
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Padding(padding: const EdgeInsets.only(right: 5),
+                                                  child: Text("Read more", style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.blue
+                                                  )),
+                                                ),
+                                                Icon (Icons.arrow_forward_rounded, size: 10, color: Colors.blue)
+                                              ],
+                                            )
+                                        )
+                                      ],
+                                    )
+                                )
+                              ],
+                            );
+
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Divider();
+                          },
+                          itemCount: Article.length
+                      )
+                    ],
+                  ),
+
+                  Padding(padding: const EdgeInsets.fromLTRB(0, 100, 0, 50),
                       child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton (
