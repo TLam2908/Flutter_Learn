@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'components/search.dart';
-import 'components/category.dart';
-import 'components/listing.dart';
+import 'components/explore_search.dart';
+import 'components/explore_category.dart';
+import 'components/explore_listing.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});

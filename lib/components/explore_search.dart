@@ -14,21 +14,21 @@ class SearchListing extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withOpacity(0.3 ),
               spreadRadius: 1,
               blurRadius: 8,
             ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 18, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 14, 10, 12),
           child: Row (
             children: [
               Icon(Icons.search, size: 22, color: Colors.black),
-                Column(
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(padding: const EdgeInsets.fromLTRB(10, 0, 0, 4),
+                    Padding(padding: const EdgeInsets.fromLTRB(12, 0, 0, 5),
                       child: Text("Where to?", style: GoogleFonts.lato(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,

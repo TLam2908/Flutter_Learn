@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:readmore/readmore.dart';
 import 'airbnb_explore.dart';
 
 void main() {
@@ -43,8 +42,8 @@ class _MainState extends State<MainPage> {
   @override
   void initState() {
     page = [
-      const ExplorePage(),
-      const ExplorePage(),
+      const ExplorePage(), // index = 0
+      const ExplorePage(), // index = 1
       const ExplorePage(),
       const ExplorePage(),
       const ExplorePage(),
@@ -79,9 +78,9 @@ class _MainState extends State<MainPage> {
          },
          items: <BottomNavigationBarItem>[
            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
-           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Wishlist'),
+           BottomNavigationBarItem(icon: Icon(Icons.favorite_border), label: 'Wishlist'),
            BottomNavigationBarItem(icon: Image.asset("assets/airbnb.png", height: 28, color: _selectedIndex == 2 ? Colors.pinkAccent : Colors.black), label: 'Trips'),
-           BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Message'),
+           BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline), label: 'Message'),
            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
          ]
      ),

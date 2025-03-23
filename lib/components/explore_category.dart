@@ -1,57 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_1/interface/category.dart';
 
-List<Object> categories = [
-  {
-    "name": "Room",
-    "icon":
+final List<Category> categories = [
+  Category(
+    name: "Room",
+    icon:
         "https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg",
-  },
-  {
-    "name": "Cabin",
-    "icon":
+  ),
+  Category(
+    name: "Cabin",
+    icon:
         "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
-  },
-  {
-    "name": "Country",
-    "icon":
+  ),
+  Category(
+    name: "Country",
+    icon:
         "https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg",
-  },
-  {
-    "name": "Castle",
-    "icon":
+  ),
+  Category(
+    name: "Castle",
+    icon:
         "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
-  },
-  {
-    "name": "Hanbok",
-    "icon":
+  ),
+  Category(
+    name: "Hanbok",
+    icon:
         "https://a0.muscache.com/pictures/51f5cf64-5821-400c-8033-8a10c7787d69.jpg",
-  },
-  {
-    "name": 'Famous',
-    "icon":
+  ),
+  Category(
+    name: 'Famous',
+    icon:
         "https://a0.muscache.com/pictures/ed8b9e47-609b-44c2-9768-33e6a22eccb2.jpg",
-  },
-  {
-    "name": "Windmill",
-    "icon":
+  ),
+  Category(
+    name: "Windmill",
+    icon:
         "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
-  },
-  {
-    "name": "Pool",
-    "icon":
+  ),
+  Category(
+    name: "Pool",
+    icon:
         "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
-  },
-  {
-    "name": "Treehouse",
-    "icon":
+  ),
+  Category(
+    name: "Treehouse",
+    icon:
         "https://a0.muscache.com/pictures/4d4a4eba-c7e4-43eb-9ce2-95e1d200d10e.jpg",
-  },
-  {
-    "name": "Modern",
-    "icon":
+  ),
+  Category(
+    name: "Modern",
+    icon:
         "https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg",
-  },
+  ),
 ];
 
 class CategoryListing extends StatefulWidget {
@@ -73,8 +74,6 @@ class _CategoryListingState extends State<CategoryListing> {
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (BuildContext context, int index) {
-            final category = categories[index] as Map<String, dynamic>;
-
             return GestureDetector(
               onTap: () {
                 setState(() {
@@ -82,7 +81,7 @@ class _CategoryListingState extends State<CategoryListing> {
                 });
               },
               child: Container(
-                // margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+                // margin: const EdgeInsets.fromLTRB(0, 0, 0, 50), SizedBox o day la border cua Container nen khi margin Container thi no se day vao trong
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -97,7 +96,7 @@ class _CategoryListingState extends State<CategoryListing> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.network(
-                      category["icon"],
+                      categories[index].icon,
                       width: 30,
                       height: 30,
                       color:
@@ -106,7 +105,7 @@ class _CategoryListingState extends State<CategoryListing> {
                               : Colors.grey.shade600,
                     ),
                     Text(
-                      category["name"],
+                      categories[index].name,
                       style: GoogleFonts.lato(
                         color:
                             _selectedIndex == index
