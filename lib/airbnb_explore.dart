@@ -17,7 +17,7 @@ class _ExplorePageState extends State<ExplorePage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Column(
                 children: [
                   SearchListing(),

@@ -5,6 +5,7 @@ import 'components/detail_image.dart';
 import 'components/detail_content.dart';
 import 'components/detail_host.dart';
 import 'components/detail_description.dart';
+import 'components/detail_map.dart';
 import 'components/detail_footer.dart';
 
 class ListingDetail extends StatelessWidget {
@@ -34,6 +35,7 @@ class ListingDetail extends StatelessWidget {
               ),
               DetailHost(host: listing.host),
               DetailDescription(description: listing.description),
+              DetailMap(address: listing.address),
               DetailFooter(price: listing.price),
             ],
           ),
