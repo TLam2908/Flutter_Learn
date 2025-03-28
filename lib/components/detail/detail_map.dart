@@ -22,7 +22,22 @@ class DetailMap extends StatefulWidget {
 class _DetailMapState extends State<DetailMap> {
   final MapController _mapController = MapController();
 
+  double _zoom = 10;
   LatLng? _currentLocation;
+
+  void zoomIn () {
+    setState(() {
+      _zoom = _zoom + 1; // Increase zoom level
+    });
+  }
+
+  void zoomOut() {
+    if (_zoom > 0) { // Prevent zoom from going below 0
+      setState(() {
+        _zoom = _zoom - 1; // Decrease zoom level
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -82,9 +97,9 @@ class _DetailMapState extends State<DetailMap> {
                   mapController: _mapController,
                   options: MapOptions(
                     initialCenter: _currentLocation ?? LatLng(0, 0),
-                    initialZoom: 2,
+                    initialZoom: _zoom,
                     minZoom: 0,
-                    maxZoom: 100,
+                    maxZoom: 20,
                   ),
                   children: [
                     TileLayer(
@@ -123,6 +138,20 @@ class _DetailMapState extends State<DetailMap> {
                     ),
                   ),
                 ),
+
+                // Positioned(
+                //   top: 16,
+                //   right: 16,
+                //   child: FloatingActionButton(
+                //     onPressed: zoomOut,
+                //     backgroundColor: Colors.pink,
+                //     child: const Icon(
+                //         Icons.zoom_out,
+                //         size: 20,
+                //         color: Colors.white
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),

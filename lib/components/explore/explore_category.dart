@@ -1,62 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_1/interface/category.dart';
-
-final List<Category> categories = [
-  Category(
-    name: "Room",
-    icon:
-        "https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg",
-  ),
-  Category(
-    name: "Cabin",
-    icon:
-        "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
-  ),
-  Category(
-    name: "Country",
-    icon:
-        "https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg",
-  ),
-  Category(
-    name: "Castle",
-    icon:
-        "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
-  ),
-  Category(
-    name: "Hanbok",
-    icon:
-        "https://a0.muscache.com/pictures/51f5cf64-5821-400c-8033-8a10c7787d69.jpg",
-  ),
-  Category(
-    name: 'Famous',
-    icon:
-        "https://a0.muscache.com/pictures/ed8b9e47-609b-44c2-9768-33e6a22eccb2.jpg",
-  ),
-  Category(
-    name: "Windmill",
-    icon:
-        "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
-  ),
-  Category(
-    name: "Pool",
-    icon:
-        "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
-  ),
-  Category(
-    name: "Treehouse",
-    icon:
-        "https://a0.muscache.com/pictures/4d4a4eba-c7e4-43eb-9ce2-95e1d200d10e.jpg",
-  ),
-  Category(
-    name: "Modern",
-    icon:
-        "https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg",
-  ),
-];
+import 'package:flutter_1/models/category.dart';
 
 class CategoryListing extends StatefulWidget {
-  const CategoryListing({super.key});
+  const CategoryListing({super.key, required this.categoriesData});
+  final List<Category> categoriesData;
 
   @override
   State<CategoryListing> createState() => _CategoryListingState();
@@ -96,7 +44,7 @@ class _CategoryListingState extends State<CategoryListing> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.network(
-                      categories[index].icon,
+                      widget.categoriesData[index].icon,
                       width: 30,
                       height: 30,
                       color:
@@ -105,7 +53,7 @@ class _CategoryListingState extends State<CategoryListing> {
                               : Colors.grey.shade600,
                     ),
                     Text(
-                      categories[index].name,
+                      widget.categoriesData[index].name,
                       style: GoogleFonts.lato(
                         color:
                             _selectedIndex == index
@@ -122,7 +70,7 @@ class _CategoryListingState extends State<CategoryListing> {
           },
           separatorBuilder:
               (BuildContext context, int index) => const SizedBox(width: 35),
-          itemCount: categories.length,
+          itemCount: widget.categoriesData.length,
         ),
       ),
     );

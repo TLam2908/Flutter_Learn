@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'interface/listing.dart';
-import 'components/detail_image.dart';
-import 'components/detail_content.dart';
-import 'components/detail_host.dart';
-import 'components/detail_description.dart';
-import 'components/detail_map.dart';
-import 'components/detail_footer.dart';
+import '../models/listing.dart';
+import '../components/detail/detail_image.dart';
+import '../components/detail/detail_content.dart';
+import '../components/detail/detail_host.dart';
+import '../components/detail/detail_description.dart';
+import '../components/detail/detail_map.dart';
+import '../components/detail/detail_footer.dart';
 
 class ListingDetail extends StatelessWidget {
   const ListingDetail({super.key, required this.listing});
-
   final Listing listing;
 
   @override

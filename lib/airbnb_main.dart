@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1/route_generator.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'airbnb_explore.dart';
+import 'screens/airbnb_explore.dart';
+import 'screens/airbnb_profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,12 +28,14 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MainPage(),
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
   State<MainPage> createState() => _MainState();
 }
 
@@ -46,7 +50,7 @@ class _MainState extends State<MainPage> {
       const ExplorePage(), // index = 1
       const ExplorePage(),
       const ExplorePage(),
-      const ExplorePage(),
+      const ProfilePage(),
     ];
     super.initState();
   }

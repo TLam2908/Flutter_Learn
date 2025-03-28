@@ -1,4 +1,4 @@
-import 'package:flutter_1/interface/host.dart';
+import 'package:flutter_1/models/host.dart';
 
 class Listing {
   final List<String> images;
