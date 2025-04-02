@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1/provider/listing_provider.dart';
 import 'package:flutter_1/route_generator.dart';
+import 'package:provider/provider.dart';
+import 'screens/airbnb_wishlist.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/airbnb_explore.dart';
 import 'screens/airbnb_profile.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ListingProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,13 +27,8 @@ class MyApp extends StatelessWidget {
       title: 'Airbnb Clone',
       theme: ThemeData(
         // This is the theme of your application.
-
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
-        ),
-        textTheme: GoogleFonts.latoTextTheme(
-          Theme.of(context).textTheme,
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme),
       ),
       home: const MainPage(),
       onGenerateRoute: RouteGenerator.generateRoute,
@@ -47,7 +50,7 @@ class _MainState extends State<MainPage> {
   void initState() {
     page = [
       const ExplorePage(), // index = 0
-      const ExplorePage(), // index = 1
+      const WishlistPage(), // index = 1
       const ExplorePage(),
       const ExplorePage(),
       const ProfilePage(),
@@ -57,40 +60,51 @@ class _MainState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-     backgroundColor: Colors.white,
-     bottomNavigationBar: BottomNavigationBar(
-         backgroundColor: Colors.white,
-         selectedItemColor: Colors.pinkAccent,
-          unselectedItemColor: Colors.black,
-         selectedLabelStyle: TextStyle(
-           fontSize: 12,
-           fontWeight: FontWeight.bold,
-         ),
-         unselectedLabelStyle: TextStyle(
-           fontSize: 12,
-           fontWeight: FontWeight.bold,
-         ),
-         iconSize: 30,
-         // elevation: 5,
-         type: BottomNavigationBarType.fixed,
-         currentIndex: _selectedIndex,
-         onTap: (int index) {
-           setState(() {
-              _selectedIndex = index;
-           });
-         },
-         items: <BottomNavigationBarItem>[
-           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
-           BottomNavigationBarItem(icon: Icon(Icons.favorite_border), label: 'Wishlist'),
-           BottomNavigationBarItem(icon: Image.asset("assets/airbnb.png", height: 28, color: _selectedIndex == 2 ? Colors.pinkAccent : Colors.black), label: 'Trips'),
-           BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline), label: 'Message'),
-           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-         ]
-     ),
-     body: SafeArea(child: page[_selectedIndex])
-   );
+    return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.pinkAccent,
+        unselectedItemColor: Colors.black,
+        selectedLabelStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+        iconSize: 30,
+        // elevation: 5,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        onTap: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: 'Wishlist',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/airbnb.png",
+              height: 28,
+              color: _selectedIndex == 2 ? Colors.pinkAccent : Colors.black,
+            ),
+            label: 'Trips',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat_bubble_outline),
+            label: 'Message',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
+      body: SafeArea(child: page[_selectedIndex]),
+    );
   }
 }
-
-

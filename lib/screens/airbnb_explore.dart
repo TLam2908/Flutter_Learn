@@ -23,7 +23,8 @@ final List<Listing> testListings = [
     date: "25 - 30 March",
     total: 402,
     isFavorite: false,
-    description: "This is a beautiful villa with a private pool, located in the heart of the city. The villa is designed in a modern style, with a large living room, a kitchen, a dining room, and a private pool. The villa is located in a quiet area, close to the beach, and has a beautiful view of the sea. The villa is perfect for a family or a group of friends who want to relax and enjoy the beautiful view of the sea.",
+    description:
+        "This is a beautiful villa with a private pool, located in the heart of the city. The villa is designed in a modern style, with a large living room, a kitchen, a dining room, and a private pool. The villa is located in a quiet area, close to the beach, and has a beautiful view of the sea. The villa is perfect for a family or a group of friends who want to relax and enjoy the beautiful view of the sea.",
     host: Host(name: "Thanh", reviews: 46, rating: 4.5, time: 10),
   ),
   Listing(
@@ -42,7 +43,8 @@ final List<Listing> testListings = [
     date: "26 April - 2 May",
     total: 1200,
     isFavorite: true,
-    description: "For those who looking for the villa for the event like wedding, birthday, party etc. please inquire the additional price before you make the booking.",
+    description:
+        "For those who looking for the villa for the event like wedding, birthday, party etc. please inquire the additional price before you make the booking.",
     host: Host(name: "Amy", reviews: 12, rating: 5, time: 2),
   ),
   Listing(
@@ -61,7 +63,8 @@ final List<Listing> testListings = [
     date: "25 - 30 March",
     total: 750,
     isFavorite: true,
-    description: "Brand new and located in Hakuba's premium area of Wadanomori, The Seasons Apartments share the same location as many of Hakuba’s finest accommodation facilities. Just 200 meters from the Happo-one ski lifts and a short stroll from central Happo and the variety of bars, restaurants and hot springs on offer, The Seasons also enjoy a quiet location. Each two-level apartment is designed to maximize guests’ enjoyment, with all bedrooms downstairs and the open-plan living areas maximized upstairs.",
+    description:
+        "Brand new and located in Hakuba's premium area of Wadanomori, The Seasons Apartments share the same location as many of Hakuba’s finest accommodation facilities. Just 200 meters from the Happo-one ski lifts and a short stroll from central Happo and the variety of bars, restaurants and hot springs on offer, The Seasons also enjoy a quiet location. Each two-level apartment is designed to maximize guests’ enjoyment, with all bedrooms downstairs and the open-plan living areas maximized upstairs.",
     host: Host(name: "Yuki", reviews: 8, rating: 4, time: 3),
   ),
   Listing(
@@ -80,7 +83,8 @@ final List<Listing> testListings = [
     date: "13 - 18 July",
     total: 720,
     isFavorite: true,
-    description: "The Hakone Cottage is a beautiful and cozy cottage located in the heart of Hakone. The cottage is designed in a traditional Japanese style, with a large living room, a kitchen, a dining room, and a private garden. The cottage is located in a quiet area, close to the Hakone Shrine, and has a beautiful view of the mountains. The cottage is perfect for a family or a group of friends who want to relax and enjoy the beautiful view of the mountains.",
+    description:
+        "The Hakone Cottage is a beautiful and cozy cottage located in the heart of Hakone. The cottage is designed in a traditional Japanese style, with a large living room, a kitchen, a dining room, and a private garden. The cottage is located in a quiet area, close to the Hakone Shrine, and has a beautiful view of the mountains. The cottage is perfect for a family or a group of friends who want to relax and enjoy the beautiful view of the mountains.",
     host: Host(name: "Yuki", reviews: 6, rating: 5, time: 3),
   ),
 ];
@@ -89,52 +93,52 @@ final List<Category> categories = [
   Category(
     name: "Room",
     icon:
-    "https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg",
+        "https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg",
   ),
   Category(
     name: "Cabin",
     icon:
-    "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
+        "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
   ),
   Category(
     name: "Country",
     icon:
-    "https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg",
+        "https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg",
   ),
   Category(
     name: "Castle",
     icon:
-    "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
+        "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
   ),
   Category(
     name: "Hanbok",
     icon:
-    "https://a0.muscache.com/pictures/51f5cf64-5821-400c-8033-8a10c7787d69.jpg",
+        "https://a0.muscache.com/pictures/51f5cf64-5821-400c-8033-8a10c7787d69.jpg",
   ),
   Category(
     name: 'Famous',
     icon:
-    "https://a0.muscache.com/pictures/ed8b9e47-609b-44c2-9768-33e6a22eccb2.jpg",
+        "https://a0.muscache.com/pictures/ed8b9e47-609b-44c2-9768-33e6a22eccb2.jpg",
   ),
   Category(
     name: "Windmill",
     icon:
-    "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
+        "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
   ),
   Category(
     name: "Pool",
     icon:
-    "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
+        "https://a0.muscache.com/pictures/5cdb8451-8f75-4c5f-a17d-33ee228e3db8.jpg",
   ),
   Category(
     name: "Treehouse",
     icon:
-    "https://a0.muscache.com/pictures/4d4a4eba-c7e4-43eb-9ce2-95e1d200d10e.jpg",
+        "https://a0.muscache.com/pictures/4d4a4eba-c7e4-43eb-9ce2-95e1d200d10e.jpg",
   ),
   Category(
     name: "Modern",
     icon:
-    "https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg",
+        "https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg",
   ),
 ];
 
@@ -154,14 +158,14 @@ class _ExplorePageState extends State<ExplorePage> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Column(
-                children: [
-                  SearchListing(),
-                  CategoryListing(categoriesData: categories,),
-                  Listings(listingsData: testListings,),
-                ]
+              children: [
+                SearchListing(),
+                CategoryListing(categoriesData: categories),
+                Listings(listingsData: testListings),
+              ],
             ),
           ),
-        )
+        ),
       ),
     );
   }
