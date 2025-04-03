@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_1/provider/listing_provider.dart';
+import 'package:flutter_1/provider/user_provider.dart';
 import 'package:flutter_1/route_generator.dart';
 import 'package:provider/provider.dart';
 import 'screens/airbnb_wishlist.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/airbnb_explore.dart';
 import 'screens/airbnb_profile.dart';
+import 'models/user.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ListingProvider(),
-      child: MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ListingProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider(User(
+          id: 0,
+          name: 'Guest',
+          email: '',
+          password: '',
+        ))),
+      ],
+      child: const MyApp(), // Specify the child widget here
     ),
   );
 }

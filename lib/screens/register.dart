@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
+import 'package:flutter_1/api/authentication.dart';
 import 'package:flutter_1/models/user.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -17,30 +15,7 @@ class _RegisterState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
-  Future<User> registerUser(String name, String password, String email) async {
-    final response = await http.post(
-      Uri.parse("http://10.0.2.2:3000/users"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'name': name,
-        'password': password,
-        'email': email,
-      }),
-    );
-    print("Response: ${response}");
-
-    if (response.statusCode == 201) {
-      print("User created");
-      final userRes = User.fromJson(jsonDecode(response.body));
-      print("User Response: $userRes");
-
-      return User.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to create user');
-    }
-  }
+  final AuthenticationApi _authenticationApi = AuthenticationApi();
 
   @override
   Widget build(BuildContext context) {
@@ -184,12 +159,44 @@ class _RegisterState extends State<RegisterPage> {
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    registerUser(
-                      _nameController.text,
-                      _passwordController.text,
-                      _emailController.text,
-                    );
+                  onPressed: () async {
+                    try {
+                      final response = await _authenticationApi.registerUser(
+                        _nameController.text,
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                      final message = response.message;
+                      final user = response.user;
+                      if (user != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              message,
+                              style: GoogleFonts.lato(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                        Navigator.pushReplacementNamed(context, '/login');
+                      }
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Registration failed: $e",
+                            style: GoogleFonts.lato(
+                              fontSize: 12,
+                              color: Colors.white,
+                            ),
+                          ),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
                   },
                   child: Text(
                     "Register",
