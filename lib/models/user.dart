@@ -14,9 +14,4 @@ class User {
       password: json['password'] as String,
     );
   }
-
-  int get userId => this.id;
-  String get userName => this.name;
-  String get userEmail => this.email;
-
 }

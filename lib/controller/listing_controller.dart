@@ -1,9 +1,9 @@
 import 'dart:collection';
-import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 import '../models/listing.dart';
 
-class ListingProvider extends ChangeNotifier {
+class ListingController extends GetxController {
   final List<Listing> _favListings = [];
   final Map<Listing, int> _quantity = {};
   final Map<Listing, bool> _userFavorite = {};
@@ -22,14 +22,13 @@ class ListingProvider extends ChangeNotifier {
 
   void add(Listing listing) {
     if (_favListings.contains(listing)) {
-      // Assert that _quantity[listing] is not null and increment it
       _quantity[listing] = _quantity[listing]! + 1;
     } else {
       _userFavorite[listing] = true;
       _quantity[listing] = 1;
       _favListings.add(listing);
     }
-    notifyListeners();
+    update();
   }
 
   void remove(Listing listing) {
@@ -42,13 +41,13 @@ class ListingProvider extends ChangeNotifier {
         _quantity.remove(listing);
       }
     }
-    notifyListeners();
+    update();
   }
 
   void removeAll() {
     _userFavorite.clear();
     _favListings.clear();
     _quantity.clear();
-    notifyListeners();
+    update();
   }
 }

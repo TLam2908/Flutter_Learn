@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TripsPage extends StatelessWidget {
+class TripsPage extends StatefulWidget {
   const TripsPage({super.key, this.searchText});
 
   final String? searchText;
+
+  @override
+  _TripsPageState createState() => _TripsPageState();
+}
+
+class _TripsPageState extends State<TripsPage> {
+  bool _showTotal = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +22,20 @@ class TripsPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  child: Text(
+                    "Your Trips",
+                    style: GoogleFonts.lato(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-                Text(searchText ?? ""),
+                // Add your trip listings here
               ],
             ),
           ),

@@ -26,7 +26,8 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Consumer<UserProvider>(
                   builder: (context, userProvider, child) {
-                    return Padding(padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -46,39 +47,85 @@ class ProfilePage extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Visibility(
+                                visible: userProvider.user.email.isEmpty,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                      Colors.pink,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed("/login");
+                                  },
+                                  child: Text(
+                                    "Login",
+                                    style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Visibility(
+                                visible: userProvider.user.email.isNotEmpty,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                      Colors.pink,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Provider.of<UserProvider>(
+                                      context,
+                                      listen: false,
+                                    ).logoutAndDeleteUser();
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text("Logout successful",
+                                                style: GoogleFonts.lato(
+                                                    color: Colors.white
+                                                )
+                                            ),
+                                            backgroundColor: Colors.green
+                                        )
+                                    );
+                                    Navigator.of(context).pushNamed("/login");
+                                  },
+
+                                  child: Text(
+                                    "Logout",
+                                    style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                             Visibility(
+                               visible: userProvider.user.email.isEmpty,
+                               child:  ElevatedButton(
+                               style: ButtonStyle(
+                                 backgroundColor: MaterialStateProperty.all(
+                                   Colors.pink,
+                                 ),
+                               ),
+                               onPressed: () {
+                                 Navigator.of(context).pushNamed("/register");
+                               },
+                               child: Text(
+                                 "Register",
+                                 style: GoogleFonts.lato(color: Colors.white),
+                               ),
+                             ),)
+                            ],
+                          ),
                         ],
                       ),
                     );
                   },
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.pink),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/login");
-                      },
-                      child: Text(
-                        "Login",
-                        style: GoogleFonts.lato(color: Colors.white),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.pink),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/register");
-                      },
-                      child: Text(
-                        "Register",
-                        style: GoogleFonts.lato(color: Colors.white),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

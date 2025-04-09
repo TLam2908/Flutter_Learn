@@ -39,6 +39,7 @@ dependencies:
   readmore: ^3.0.0
   card_swiper : ^3.0.0
 
+  get: ^4.7.2
   geocoding: ^3.0.0
   flutter_map: ^8.1.1
   latlong2: ^0.9.1

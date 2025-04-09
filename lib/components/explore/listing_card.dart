@@ -7,6 +7,9 @@ import 'package:flutter_1/models/listing.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:get/get.dart';
+import 'package:flutter_1/controller/listing_controller.dart';
+
 class ListingCard extends StatefulWidget {
   const ListingCard({
     super.key,
@@ -113,15 +116,18 @@ class _ListingCardState extends State<ListingCard> {
 
                       if (widget.userFavourite == false ||
                           widget.userFavourite == null) {
-                        Provider.of<ListingProvider>(
-                          context,
-                          listen: false,
-                        ).add(widget.listingData);
+                        // Provider.of<ListingProvider>(
+                        //   context,
+                        //   listen: false,
+                        // ).add(widget.listingData);
+
+                        Get.find<ListingController>().add(widget.listingData);
                       } else {
-                        Provider.of<ListingProvider>(
-                          context,
-                          listen: false,
-                        ).remove(widget.listingData);
+                        // Provider.of<ListingProvider>(
+                        //   context,
+                        //   listen: false,
+                        // ).remove(widget.listingData);
+                        Get.find<ListingController>().remove(widget.listingData);
                       }
                     },
 
@@ -222,30 +228,26 @@ class _ListingCardState extends State<ListingCard> {
                           padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                           child: GestureDetector(
                             onTap: () {
-                              Provider.of<ListingProvider>(
-                                context,
-                                listen: false,
-                              ).add(widget.listingData);
+                              // Provider.of<ListingProvider>(
+                              //   context,
+                              //   listen: false,
+                              // ).add(widget.listingData);
+                              Get.find<ListingController>().add(widget.listingData);
                             },
-                            child: Icon(
-                              Icons.add,
-                              size: 20,
-                            ),
-                          )
+                            child: Icon(Icons.add, size: 20),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                           child: GestureDetector(
                             onTap: () {
-                              Provider.of<ListingProvider>(
-                                context,
-                                listen: false,
-                              ).remove(widget.listingData);
+                              // Provider.of<ListingProvider>(
+                              //   context,
+                              //   listen: false,
+                              // ).remove(widget.listingData);
+                              Get.find<ListingController>().remove(widget.listingData);
                             },
-                            child: Icon(
-                              Icons.remove,
-                              size: 20,
-                            ),
+                            child: Icon(Icons.remove, size: 20),
                           ),
                         ),
                       ],

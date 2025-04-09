@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1/controller/listing_controller.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_1/provider/listing_provider.dart';
 import 'package:flutter_1/models/listing.dart';
@@ -39,12 +41,22 @@ class _ListingsState extends State<Listings> {
                   ),
                 );
               },
-              child: Consumer<ListingProvider>(
-                builder:
-                    (context, listingProvider, child) => ListingCard(
-                      listingData: widget.listingsData[listIndex],
-                      userFavourite: listingProvider.userFavorite[widget.listingsData[listIndex]],
-                    ),
+              // child: Consumer<ListingProvider>(
+              //   builder:
+              //       (context, listingProvider, child) => ListingCard(
+              //         listingData: widget.listingsData[listIndex],
+              //         userFavourite: listingProvider.userFavorite[widget.listingsData[listIndex]],
+              //       ),
+              // ),
+              child: GetBuilder<ListingController>(
+                builder: (listingController) {
+                  return ListingCard(
+                    listingData: widget.listingsData[listIndex],
+                    userFavourite:
+                        listingController.userFavorite[widget
+                            .listingsData[listIndex]],
+                  );
+                },
               ),
             ),
           );

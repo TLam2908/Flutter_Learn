@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1/controller/listing_controller.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -40,20 +42,66 @@ class _WishlistPageState extends State<WishlistPage> {
                     ),
                   ),
                 ),
-                Consumer<ListingProvider>(
-                  builder: (context, listingProvider, child) {
-                    if (_showTotal != listingProvider.listings.isNotEmpty) {
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        setState(() {
-                          _showTotal = listingProvider.listings.isNotEmpty;
-                        });
-                      });
-                    }
+                // Consumer<ListingProvider>(
+                //   builder: (context, listingProvider, child) {
+                //     if (_showTotal != listingProvider.listings.isNotEmpty) {
+                //       WidgetsBinding.instance.addPostFrameCallback((_) {
+                //         setState(() {
+                //           _showTotal = listingProvider.listings.isNotEmpty;
+                //         });
+                //       });
+                //     }
+                //     return ListView.builder(
+                //       shrinkWrap: true,
+                //       physics: NeverScrollableScrollPhysics(),
+                //       itemCount: listingProvider.listings.length,
+                //       itemBuilder: (BuildContext context, int listIndex) {
+                //         return Padding(
+                //           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                //           child: GestureDetector(
+                //             onTap: () {
+                //               Navigator.push(
+                //                 context,
+                //                 MaterialPageRoute(
+                //                   builder:
+                //                       (context) => ListingDetail(
+                //                         listing:
+                //                             listingProvider.listings[listIndex],
+                //                       ),
+                //                 ),
+                //               );
+                //             },
+                //             child: ListingCard(
+                //               listingData: listingProvider.listings[listIndex],
+                //               userFavourite:
+                //                   listingProvider.userFavorite[listingProvider
+                //                       .listings[listIndex]],
+                //               quantity:
+                //                   listingProvider.quantity[listingProvider
+                //                       .listings[listIndex]],
+                //             ),
+                //           ),
+                //         );
+                //       },
+                //     );
+                //   },
+                // ), Co
+                GetBuilder<ListingController>(
+                  builder: (listingController) {
                     return ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: listingProvider.listings.length,
+                      itemCount: listingController.listings.length,
                       itemBuilder: (BuildContext context, int listIndex) {
+                        if (_showTotal !=
+                            listingController.listings.isNotEmpty) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            setState(() {
+                              _showTotal =
+                                  listingController.listings.isNotEmpty;
+                            });
+                          });
+                        }
                         return Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: GestureDetector(
@@ -64,18 +112,21 @@ class _WishlistPageState extends State<WishlistPage> {
                                   builder:
                                       (context) => ListingDetail(
                                         listing:
-                                            listingProvider.listings[listIndex],
+                                            listingController
+                                                .listings[listIndex],
                                       ),
                                 ),
                               );
                             },
                             child: ListingCard(
-                              listingData: listingProvider.listings[listIndex],
+                              listingData:
+                                  listingController.listings[listIndex],
                               userFavourite:
-                                  listingProvider.userFavorite[listingProvider
+                                  listingController
+                                      .userFavorite[listingController
                                       .listings[listIndex]],
                               quantity:
-                                  listingProvider.quantity[listingProvider
+                                  listingController.quantity[listingController
                                       .listings[listIndex]],
                             ),
                           ),
@@ -84,6 +135,7 @@ class _WishlistPageState extends State<WishlistPage> {
                     );
                   },
                 ),
+
                 Visibility(
                   visible: _showTotal,
                   child: Container(
@@ -106,10 +158,21 @@ class _WishlistPageState extends State<WishlistPage> {
                                   color: Colors.black,
                                 ),
                               ),
-                              Consumer<ListingProvider>(
+                              // Consumer<ListingProvider>(
+                              //   builder:
+                              //       (context, listingProvider, child) => Text(
+                              //         "\$${listingProvider.totalPrice.toStringAsFixed(2)}",
+                              //         style: GoogleFonts.lato(
+                              //           fontSize: 24,
+                              //           fontWeight: FontWeight.bold,
+                              //           color: Colors.black,
+                              //         ),
+                              //       ),
+                              // ),
+                              GetBuilder<ListingController>(
                                 builder:
-                                    (context, listingProvider, child) => Text(
-                                      "\$${listingProvider.totalPrice.toStringAsFixed(2)}",
+                                    (listingController) => Text(
+                                      "\$${listingController.totalPrice.toStringAsFixed(2)}",
                                       style: GoogleFonts.lato(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,
@@ -122,10 +185,11 @@ class _WishlistPageState extends State<WishlistPage> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Provider.of<ListingProvider>(
-                              context,
-                              listen: false,
-                            ).removeAll();
+                            // Provider.of<ListingProvider>(
+                            //   context,
+                            //   listen: false,
+                            // ).removeAll();
+                            Get.find<ListingController>().removeAll();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.pink,
@@ -152,10 +216,7 @@ class _WishlistPageState extends State<WishlistPage> {
                   child: Center(
                     child: Text(
                       "No items in your wishlist",
-                      style: GoogleFonts.lato(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
+                      style: GoogleFonts.lato(fontSize: 16, color: Colors.grey),
                     ),
                   ),
                 ),

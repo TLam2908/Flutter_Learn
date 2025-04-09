@@ -21,4 +21,14 @@ class UserProvider extends ChangeNotifier {
       throw Exception('Failed to login');
     }
   }
+
+  Future<void> logoutAndDeleteUser () async {
+    final logoutResponse = await _authenticationApi.logoutUser();
+    if (logoutResponse != null) {
+      _user = User(id: 0, name: 'Guest', email: '', password: '');
+      notifyListeners();
+    } else {
+      throw Exception('Failed to logout');
+    }
+  }
 }

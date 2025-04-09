@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flutter_1/controller/listing_controller.dart';
 import 'package:flutter_1/provider/listing_provider.dart';
 import 'package:flutter_1/provider/user_provider.dart';
 import 'package:flutter_1/route_generator.dart';
 import 'package:provider/provider.dart';
 import 'screens/airbnb_wishlist.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'screens/airbnb_trips.dart';
 import 'screens/airbnb_explore.dart';
 import 'screens/airbnb_profile.dart';
 import 'models/user.dart';
 
 void main() {
+
+  Get.put(ListingController());
   runApp(
     MultiProvider(
       providers: [
@@ -61,7 +66,7 @@ class _MainState extends State<MainPage> {
     page = [
       const ExplorePage(), // index = 0
       const WishlistPage(), // index = 1
-      const ExplorePage(),
+      const TripsPage(),
       const ExplorePage(),
       const ProfilePage(),
     ];

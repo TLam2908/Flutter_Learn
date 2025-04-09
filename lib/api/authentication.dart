@@ -61,4 +61,18 @@ class AuthenticationApi {
       throw Exception('Failed to login');
     }
   }
+
+  Future<String> logoutUser() async {
+    try {
+      final response = await http.post(
+        Uri.parse("$baseUrl/auth/logout"),
+        headers: headers,
+      );
+      final responseData = jsonDecode(response.body);
+      return responseData['message'];
+    } catch (error) {
+      print("Error: $error");
+      throw Exception('Failed to logout');
+    }
+  }
 }
