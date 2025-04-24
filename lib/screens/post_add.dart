@@ -152,7 +152,7 @@ class _PostAddState extends State<PostAdd> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                "Post added successfully",
+                                "Post deleted successfully",
                                 style: GoogleFonts.lato(
                                   fontSize: 12,
                                   color: Colors.white,

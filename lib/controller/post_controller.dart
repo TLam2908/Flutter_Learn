@@ -39,4 +39,30 @@ class PostController extends GetxController {
       throw Exception("Failed to add post: $e");
     }
   }
+
+  Future<String> deletePost(int id) async {
+    try {
+      final response = await _postApi.deletePost(id);
+      getPosts();
+      return response.message;
+    } catch (e) {
+      print("From GetxController, Error deleting post: $e");
+      throw Exception("Failed to delete post: $e");
+    }
+  }
+
+  Future<String> editedPost(int id, Post post) async {
+    try {
+      final response = await _postApi.editPost(id, post);
+      if (response != null) {
+        _postList.removeWhere((element) => element.id == id);
+        _postList.add(response.post);
+      }
+      getPosts();
+      return response.message;
+    } catch (e) {
+      print("From GetxController, Error updating post: $e");
+      throw Exception("Failed to update post: $e");
+    }
+  }
 }

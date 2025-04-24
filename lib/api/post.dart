@@ -50,10 +50,49 @@ class PostApi {
       final createdPost = Post.fromJson(responsePost['post']);
       final message = responsePost['message'];
       
-      return PostResponse(post, message);
+      return PostResponse(createdPost, message);
     } catch (e) {
       print("From PostAPI, Error adding post: $e");
       throw Exception('Failed to add post');
+    }
+  }
+
+  Future<PostResponse> deletePost(int id) async {
+    try {
+      final response = await http.delete(
+        Uri.parse("$baseUrl/$id"),
+        headers: headers,
+      );
+
+      final responsePost = jsonDecode(response.body);
+      print("responsePost: $responsePost");
+
+      final message = responsePost['message'];
+      final deletedPost = Post.fromJson(responsePost['post']);
+
+      return PostResponse(deletedPost, message);
+    } catch (e) {
+      print("From PostAPI, Error deleting post: $e");
+      throw Exception('Failed to delete post');
+    }
+  }
+
+  Future<PostResponse> editPost (int id, Post post) async {
+    try {
+      final response = await http.patch(
+        Uri.parse("$baseUrl/$id"),
+        headers: headers,
+        body: jsonEncode(post.toJson()),
+      );
+
+      final responsePost = jsonDecode(response.body);
+      print("responsePost: $responsePost");
+      final updatedPost = Post.fromJson(responsePost['post']);
+      final message = responsePost['message'];
+      return PostResponse(updatedPost, message);
+    } catch (error) {
+      print("From PostAPI, Error editing post: $error");
+      throw Exception('Failed to edit post');
     }
   }
 }
