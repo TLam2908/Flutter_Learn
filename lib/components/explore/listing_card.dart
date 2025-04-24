@@ -27,13 +27,6 @@ class ListingCard extends StatefulWidget {
 }
 
 class _ListingCardState extends State<ListingCard> {
-  // bool isFavorite = false;
-  //
-  // void _toggleFav() {
-  //   setState(() {
-  //     isFavorite = !isFavorite;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {

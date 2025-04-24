@@ -17,8 +17,6 @@ class _LoginState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   final AuthenticationApi _authenticationApi = AuthenticationApi();
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
